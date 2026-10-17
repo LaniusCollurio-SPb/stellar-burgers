@@ -6,3 +6,7 @@ export type AppContentProps = {
   isLoading: boolean;
   error: SerializedError | null;
 };
+
+export type LocationState = {
+  background?: Location;
+};

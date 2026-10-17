@@ -52,6 +52,7 @@ export const ProfileUI = ({
             onChange={handleInputChange}
             value={formValue.password}
             name={'password'}
+            autoComplete="new-password"
             error={false}
             errorText={''}
             size={'default'}

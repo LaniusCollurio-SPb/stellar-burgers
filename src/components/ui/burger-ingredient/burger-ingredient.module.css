@@ -4,14 +4,9 @@
   justify-content: space-between;
 }
 
-.article {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 260px;
-  color: #ffff;
-  text-decoration: none;
-  cursor: pointer;
+.text {
+  text-align: center;
+  transition: color 0.2s ease-in-out;
 }
 
 .cost {
@@ -20,8 +15,33 @@
   align-items: center;
 }
 
-.text {
-  text-align: center;
+.cost p{
+  transition: color 0.2s ease-in-out;
+}
+
+.container:hover .text,
+.container:hover .cost p {
+  color: #6a6aff;
+}
+
+.article {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  overflow: hidden;
+  color: #ffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.article img {
+  transform-origin: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+.container:hover .article img {
+  transform: scale(1.15);
 }
 
 .addButton {

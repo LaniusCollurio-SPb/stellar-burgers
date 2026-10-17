@@ -13,12 +13,28 @@
 .menu_part_left {
   display: flex;
   flex-basis: 35%;
+  align-items: center;
+  gap: 8px;
 }
 
 .link {
   display: flex;
+  align-items: center;
+  padding: 16px 24px;
   color: var(--text-inactive-color);
   text-decoration: none;
+  border-radius: 40px;
+  transition:
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  background-color: #1c1c21;
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 8%),
+    0 0 14px 4px rgb(255 255 255 / 20%);
 }
 
 .link_active {
