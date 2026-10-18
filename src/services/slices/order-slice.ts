@@ -1,6 +1,8 @@
 import { getOrderByNumberApi, getOrdersApi, orderBurgerApi } from '@/utils/burger-api';
 import { createAsyncThunk, createSlice, type SerializedError } from '@reduxjs/toolkit';
 
+import { logoutUser } from './user-slice';
+
 import type { TOrder } from '@/utils/types';
 
 type TOrdersState = {
@@ -8,6 +10,8 @@ type TOrdersState = {
   orders: TOrder[];
   orderData: TOrder | null;
   orderRequest: boolean;
+  isOrdersLoading: boolean;
+  isOrderDataLoading: boolean;
   error: SerializedError | null;
 };
 
@@ -16,6 +20,8 @@ const initialState: TOrdersState = {
   orders: [],
   orderData: null,
   orderRequest: false,
+  isOrdersLoading: false,
+  isOrderDataLoading: false,
   error: null,
 };
 
@@ -51,6 +57,7 @@ export const orderSlice = createSlice({
       state.orderModalData = null;
       state.orderData = null;
       state.orderRequest = false;
+      state.isOrderDataLoading = false;
     },
   },
   selectors: {
@@ -58,6 +65,8 @@ export const orderSlice = createSlice({
     selectOrders: (state) => state.orders,
     selectOrderData: (state) => state.orderData,
     selectOrderRequest: (state) => state.orderRequest,
+    selectIsOrdersLoading: (state) => state.isOrdersLoading,
+    selectIsOrderDataLoading: (state) => state.isOrderDataLoading,
     selectOrderError: (state) => state.error,
   },
   extraReducers: (builder) => {
@@ -75,28 +84,35 @@ export const orderSlice = createSlice({
         state.error = action.error;
       })
       .addCase(fetchOrders.pending, (state) => {
-        state.orderRequest = true;
+        state.isOrdersLoading = true;
         state.error = null;
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
-        state.orderRequest = false;
+        state.isOrdersLoading = false;
         state.orders = action.payload;
       })
       .addCase(fetchOrders.rejected, (state, action) => {
-        state.orderRequest = false;
+        state.isOrdersLoading = false;
         state.error = action.error;
       })
       .addCase(fetchOrderByNumber.pending, (state) => {
-        state.orderRequest = true;
+        state.isOrderDataLoading = true;
         state.error = null;
       })
       .addCase(fetchOrderByNumber.fulfilled, (state, action) => {
-        state.orderRequest = false;
+        state.isOrderDataLoading = false;
         state.orderData = action.payload;
       })
       .addCase(fetchOrderByNumber.rejected, (state, action) => {
-        state.orderRequest = false;
+        state.isOrderDataLoading = false;
         state.error = action.error;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isOrdersLoading = false;
+        state.isOrderDataLoading = false;
+        state.orderData = null;
+        state.orderModalData = null;
+        state.orders = [];
       });
   },
 });
@@ -107,6 +123,8 @@ export const {
   selectOrders,
   selectOrderData,
   selectOrderRequest,
+  selectIsOrdersLoading,
+  selectIsOrderDataLoading,
   selectOrderError,
 } = orderSlice.selectors;
 export const orderReducer = orderSlice.reducer;

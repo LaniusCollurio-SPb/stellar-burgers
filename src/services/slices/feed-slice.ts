@@ -11,7 +11,7 @@ const initialState: TFeedState = {
   error: null,
 };
 
-export const feedFetch = createAsyncThunk(
+export const fetchFeed = createAsyncThunk(
   'feed/fetch',
   async (): Promise<TOrdersData> => {
     const { orders, total, totalToday } = await getFeedsApi();
@@ -32,17 +32,17 @@ const feedSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(feedFetch.pending, (state) => {
+      .addCase(fetchFeed.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(feedFetch.fulfilled, (state, action) => {
+      .addCase(fetchFeed.fulfilled, (state, action) => {
         state.isLoading = false;
         state.orders = action.payload.orders;
         state.total = action.payload.total;
         state.totalToday = action.payload.totalToday;
       })
-      .addCase(feedFetch.rejected, (state, action) => {
+      .addCase(fetchFeed.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message ?? 'Не удалось загрузить заказы';
       });

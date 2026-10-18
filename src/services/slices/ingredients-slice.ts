@@ -26,7 +26,7 @@ const ingredientsSlice = createSlice({
   reducers: {},
   selectors: {
     selectIngredients: (state) => state.ingredients,
-    selectIngredientById: (state, id) =>
+    selectIngredientById: (state, id: string | undefined) =>
       state.ingredients.find((ingredient) => ingredient._id === id),
     selectIngredientsIsLoading: (state) => state.isLoading,
     selectIngredientsError: (state) => state.error,

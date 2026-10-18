@@ -7,7 +7,7 @@ import {
   type TLoginData,
   type TRegisterData,
 } from '@/utils/burger-api';
-import { getCookie, setCookie } from '@/utils/cookie';
+import { setCookie } from '@/utils/cookie';
 import { createAsyncThunk, createSlice, type SerializedError } from '@reduxjs/toolkit';
 
 import type { TUser } from '@/utils/types';
@@ -92,17 +92,6 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async (): Promise<TU
   }
 });
 
-export const checkUserIsAuth = createAsyncThunk(
-  'user/checkAuth',
-  async (_, { dispatch }): Promise<TUser | null> => {
-    if (getCookie('accessToken')) {
-      const userData: TUser = await dispatch(fetchUser()).unwrap();
-      return userData;
-    }
-    return null;
-  }
-);
-
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -182,21 +171,6 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthChecked = true;
-        state.error = action.error ?? null;
-      })
-      .addCase(checkUserIsAuth.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(checkUserIsAuth.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isAuthChecked = true;
-        state.user = action.payload;
-      })
-      .addCase(checkUserIsAuth.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isAuthChecked = true;
-        state.user = null;
         state.error = action.error ?? null;
       });
   },

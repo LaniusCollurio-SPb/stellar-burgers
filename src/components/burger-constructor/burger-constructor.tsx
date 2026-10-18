@@ -1,7 +1,4 @@
-import {
-  clearIngredients,
-  selectBurgerConstructorState,
-} from '@/services/slices/burgerConstructor-slice';
+import { selectBurgerConstructorState } from '@/services/slices/burgerConstructor-slice';
 import {
   clearOrder,
   createOrder,
@@ -12,13 +9,14 @@ import { selectUser } from '@/services/slices/user-slice';
 import { useDispatch, useSelector } from '@/services/store';
 import { BurgerConstructorUI } from '@ui';
 import { useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import type { TConstructorIngredient, TConstructorState, TOrder } from '@utils-types';
 
 export const BurgerConstructor = (): React.JSX.Element | null => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const constructorItems: TConstructorState = useSelector(selectBurgerConstructorState);
   const orderRequest = useSelector(selectOrderRequest);
@@ -27,7 +25,7 @@ export const BurgerConstructor = (): React.JSX.Element | null => {
 
   const onOrderClick = (): void => {
     if (!user) {
-      void navigate('/login', { state: { from: '/constructor' } });
+      void navigate('/login', { state: location });
       return;
     }
 
@@ -42,7 +40,6 @@ export const BurgerConstructor = (): React.JSX.Element | null => {
   };
 
   const closeOrderModal = (): void => {
-    dispatch(clearIngredients());
     dispatch(clearOrder());
   };
 

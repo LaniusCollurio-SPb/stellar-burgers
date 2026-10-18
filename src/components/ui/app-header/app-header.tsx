@@ -26,11 +26,11 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
           {({ isActive }) => (
             <>
               <BurgerIcon type={isActive ? 'primary' : 'secondary'} />
-              <p className="text text_type_main-default ml-2">Конструктор</p>
+              <p className="text text_type_main-default ml-2 mr-10">Конструктор</p>
             </>
           )}
         </NavLink>
-        <NavLink to="/feed" end className={toggleNavLinkStyle}>
+        <NavLink to="/feed" className={toggleNavLinkStyle}>
           {({ isActive }) => (
             <>
               <ListIcon type={isActive ? 'primary' : 'secondary'} />
@@ -45,7 +45,7 @@ export const AppHeaderUI = ({ userName }: TAppHeaderUIProps): React.JSX.Element 
         </NavLink>
       </div>
       <div className={styles.link_position_last}>
-        <NavLink to="/profile" end className={toggleNavLinkStyle}>
+        <NavLink to="/profile" className={toggleNavLinkStyle}>
           {({ isActive }) => (
             <>
               <ProfileIcon type={isActive ? 'primary' : 'secondary'} />

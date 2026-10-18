@@ -17,12 +17,12 @@ export const BurgerConstructorElement = memo(function BurgerConstructorElement({
   const handleMoveDown = useCallback((): void => {
     if (index >= totalItems - 1) return;
     dispatch(moveIngredient({ fromIndex: index, toIndex: index + 1 }));
-  }, [dispatch, index]);
+  }, [dispatch, index, totalItems]);
 
   const handleMoveUp = useCallback((): void => {
     if (index <= 0) return;
     dispatch(moveIngredient({ fromIndex: index, toIndex: index - 1 }));
-  }, [dispatch, index, totalItems]);
+  }, [dispatch, index]);
 
   const handleClose = useCallback((): void => {
     dispatch(removeIngredient(ingredient.id));

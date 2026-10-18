@@ -1,5 +1,9 @@
 import { selectIngredients } from '@/services/slices/ingredients-slice';
-import { fetchOrderByNumber, selectOrderData } from '@/services/slices/order-slice';
+import {
+  fetchOrderByNumber,
+  selectIsOrderDataLoading,
+  selectOrderData,
+} from '@/services/slices/order-slice';
 import { useDispatch, useSelector } from '@/services/store';
 import { Preloader, OrderInfoUI } from '@ui';
 import { useEffect, useMemo } from 'react';
@@ -13,6 +17,7 @@ export const OrderInfo = (): React.JSX.Element => {
 
   const orderData = useSelector(selectOrderData);
   const ingredients: TIngredient[] = useSelector(selectIngredients);
+  const isOrderDataLoading = useSelector(selectIsOrderDataLoading);
 
   useEffect(() => {
     if (number) {
@@ -59,7 +64,7 @@ export const OrderInfo = (): React.JSX.Element => {
     };
   }, [orderData, ingredients]);
 
-  if (!orderInfo) {
+  if (!orderInfo || isOrderDataLoading) {
     return <Preloader />;
   }
 

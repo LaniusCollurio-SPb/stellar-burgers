@@ -1,4 +1,3 @@
-import { Preloader } from '@/components/ui';
 import {
   selectUser,
   selectUserError,
@@ -77,19 +76,6 @@ export const Profile = (): React.JSX.Element => {
       [name]: value,
     }));
   };
-
-  if (!isLoading && !user) {
-    return <Preloader />;
-  }
-
-  if (!user) {
-    return <></>;
-  }
-  console.log({
-    nameChanged: formValue.name !== user?.name,
-    emailChanged: formValue.email !== user?.email,
-    passwordChanged: formValue.password !== '',
-  });
 
   return (
     <ProfileUI

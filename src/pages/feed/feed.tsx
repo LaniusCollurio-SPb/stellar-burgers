@@ -1,4 +1,4 @@
-import { feedFetch, selectFeedOrders } from '@/services/slices/feed-slice';
+import { fetchFeed, selectFeedOrders } from '@/services/slices/feed-slice';
 import { useDispatch, useSelector } from '@/services/store';
 import { Preloader } from '@ui';
 import { FeedUI } from '@ui-pages';
@@ -11,11 +11,11 @@ export const Feed = (): React.JSX.Element => {
   const orders: TOrder[] = useSelector(selectFeedOrders);
 
   useEffect(() => {
-    void dispatch(feedFetch());
+    void dispatch(fetchFeed());
   }, [dispatch]);
 
   const handleGetFeeds = (): void => {
-    void dispatch(feedFetch());
+    void dispatch(fetchFeed());
   };
 
   if (!orders.length) {

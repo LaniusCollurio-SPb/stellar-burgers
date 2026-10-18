@@ -4,15 +4,12 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { Preloader } from '../ui';
 
-import type { ReactElement, ReactNode } from 'react';
+import type { ReactElement } from 'react';
 import type React from 'react';
 
-import styles from './protected-route.module.css';
-
-export type TProtectedRoutProps = {
+export type TProtectedRouteProps = {
   children: ReactElement;
   onlyUnAuthorized?: boolean;
-  title?: ReactNode;
 };
 
 type TProtectedRouteLocationState = {
@@ -22,8 +19,7 @@ type TProtectedRouteLocationState = {
 export const ProtectedRoute = ({
   children,
   onlyUnAuthorized = false,
-  title,
-}: TProtectedRoutProps): React.JSX.Element => {
+}: TProtectedRouteProps): React.JSX.Element => {
   const location = useLocation();
 
   const isAuthChecked = useSelector(selectUserIsAuthChecked);
@@ -43,17 +39,5 @@ export const ProtectedRoute = ({
     return <Navigate to={from} replace />;
   }
 
-  return (
-    <>
-      {title != null && (
-        <h3
-          className={`text text_type_main-medium ${styles.text} ${styles.detailPageWrap} ${styles.detailHeader}`}
-          style={{ textAlign: 'center' }}
-        >
-          {title}
-        </h3>
-      )}
-      {children}
-    </>
-  );
+  return children;
 };

@@ -26,7 +26,9 @@ import {
 } from '@pages';
 import { Preloader } from '@ui';
 import { useEffect } from 'react';
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate, useMatch } from 'react-router-dom';
+
+import { PageTitle } from '../page-title';
 
 import type { AppContentProps, LocationState } from './type';
 import type { TIngredient } from '@utils-types';
@@ -94,8 +96,10 @@ const RouteComponent = (): React.JSX.Element => {
   const navigate = useNavigate();
   const locationState = location.state as LocationState | null;
   const backgroundLocation = locationState?.background;
-  const numberFromPath = location.pathname.split('/').pop() ?? '';
-  const orderNumber = numberFromPath.padStart(6, '0');
+  const feedOrderNumber = useMatch('/feed/:number')?.params.number;
+  const profileOrderNumber = useMatch('/profile/orders/:number')?.params.number;
+  const orderNumber = feedOrderNumber ?? profileOrderNumber;
+  const orderTitle = orderNumber ? `#${orderNumber.padStart(6, '0')}` : '';
   const handleModalClose = (): void => void navigate(-1);
 
   return (
@@ -154,24 +158,26 @@ const RouteComponent = (): React.JSX.Element => {
         <Route
           path="/feed/:number"
           element={
-            <ProtectedRoute title={`#${orderNumber}`}>
+            <PageTitle title={`${orderTitle}`} variant="iceland">
               <OrderInfo />
-            </ProtectedRoute>
+            </PageTitle>
           }
         />
         <Route
           path="/ingredients/:id"
           element={
-            <ProtectedRoute>
+            <PageTitle title="Детали ингредиента">
               <IngredientDetails />
-            </ProtectedRoute>
+            </PageTitle>
           }
         />
         <Route
           path="/profile/orders/:number"
           element={
-            <ProtectedRoute title={`#${orderNumber}`}>
-              <OrderInfo />
+            <ProtectedRoute>
+              <PageTitle title={`${orderTitle}`}>
+                <OrderInfo />
+              </PageTitle>
             </ProtectedRoute>
           }
         />
@@ -182,7 +188,7 @@ const RouteComponent = (): React.JSX.Element => {
           <Route
             path="/feed/:number"
             element={
-              <Modal title={`#${orderNumber}`} onClose={handleModalClose}>
+              <Modal title={`${orderTitle}`} onClose={handleModalClose}>
                 <OrderInfo />
               </Modal>
             }
@@ -199,7 +205,7 @@ const RouteComponent = (): React.JSX.Element => {
             path="/profile/orders/:number"
             element={
               <ProtectedRoute>
-                <Modal title={`#${orderNumber}`} onClose={handleModalClose}>
+                <Modal title={`${orderTitle}`} onClose={handleModalClose}>
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

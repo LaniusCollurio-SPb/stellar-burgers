@@ -1,0 +1,23 @@
+.text {
+  font-weight: 400;
+  font-size: 36px;
+  font-family: 'Jet Brains Mono', monospace;
+  font-style: normal;
+  line-height: 40px;
+}
+
+.detailPageWrap {
+  margin: 120px auto 0;
+}
+
+.detailHeader {
+  text-align: center;
+}
+
+.fontIceland {
+  font-weight: 400;
+  font-size: 28px;
+  font-family: 'Iceland', serif;
+  font-style: normal;
+  line-height: 24px;
+}
