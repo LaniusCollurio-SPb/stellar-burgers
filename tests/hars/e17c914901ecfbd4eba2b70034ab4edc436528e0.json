@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "name": "Астероидный краторный метеоритный традиционный-галактический бургер",
+  "order": {
+    "_id": "6ad8c75e9c17c46eb6761c10",
+    "number": 592,
+    "name": "Астероидный краторный метеоритный традиционный-галактический бургер",
+    "ingredients": [
+      {
+        "_id": "6acd6b8163765e371c0bd9eb",
+        "name": "Краторная булка N-200i",
+        "type": "bun",
+        "proteins": 80,
+        "fat": 24,
+        "carbohydrates": 53,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://norma.ffapi.ru/images/bun-02.png",
+        "image_mobile": "https://norma.ffapi.ru/images/bun-02-mobile.png",
+        "image_large": "https://norma.ffapi.ru/images/bun-02-large.png"
+      },
+      {
+        "_id": "6acd6b8163765ed1960bd9f3",
+        "name": "Соус традиционный галактический",
+        "type": "sauce",
+        "proteins": 42,
+        "fat": 24,
+        "carbohydrates": 42,
+        "calories": 99,
+        "price": 15,
+        "image": "https://norma.ffapi.ru/images/sauce-03.png",
+        "image_mobile": "https://norma.ffapi.ru/images/sauce-03-mobile.png",
+        "image_large": "https://norma.ffapi.ru/images/sauce-03-large.png"
+      },
+      {
+        "_id": "6acd6b8163765e9acf0bd9ef",
+        "name": "Говяжий метеорит (отбивная)",
+        "type": "main",
+        "proteins": 800,
+        "fat": 800,
+        "carbohydrates": 300,
+        "calories": 2674,
+        "price": 3000,
+        "image": "https://norma.ffapi.ru/images/meat-04.png",
+        "image_mobile": "https://norma.ffapi.ru/images/meat-04-mobile.png",
+        "image_large": "https://norma.ffapi.ru/images/meat-04-large.png"
+      },
+      {
+        "_id": "6acd6b8163765e36560bd9f9",
+        "name": "Сыр с астероидной плесенью",
+        "type": "main",
+        "proteins": 84,
+        "fat": 48,
+        "carbohydrates": 420,
+        "calories": 3377,
+        "price": 4142,
+        "image": "https://norma.ffapi.ru/images/cheese.png",
+        "image_mobile": "https://norma.ffapi.ru/images/cheese-mobile.png",
+        "image_large": "https://norma.ffapi.ru/images/cheese-large.png"
+      },
+      {
+        "_id": "6acd6b8163765e371c0bd9eb",
+        "name": "Краторная булка N-200i",
+        "type": "bun",
+        "proteins": 80,
+        "fat": 24,
+        "carbohydrates": 53,
+        "calories": 420,
+        "price": 1255,
+        "image": "https://norma.ffapi.ru/images/bun-02.png",
+        "image_mobile": "https://norma.ffapi.ru/images/bun-02-mobile.png",
+        "image_large": "https://norma.ffapi.ru/images/bun-02-large.png"
+      }
+    ],
+    "owner": {
+      "name": "Tester",
+      "email": "test@test.ru",
+      "createdAt": "2026-10-17T20:20:05.192Z",
+      "updatedAt": "2026-10-21T13:19:48.891Z"
+    },
+    "status": "done",
+    "createdAt": "2026-10-21T14:08:30.550Z",
+    "updatedAt": "2026-10-21T14:08:30.553Z",
+    "price": 9667
+  }
+}
